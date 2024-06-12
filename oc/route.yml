@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: java-route
+spec:
+  to:
+    kind: Service
+    name: spring-boot-app
+  port:
+    targetPort: 8081
+  tls:
+    termination: edge
+  wildcardPolicy: None
