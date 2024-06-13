@@ -57,33 +57,26 @@ pipeline {
             }
         }
     }
-  stage('Edit new image in deployment.yaml file') {
+     stage('Edit new image in deployment.yaml file') {
             steps {
                 script { 
-                    withCredentials([string(credentialsId: "${githubToken}", variable: 'GITHUB_TOKEN')]) {
-                        editNewImage("${GITHUB_TOKEN}", "${imageName}", "${gitUserEmail}", "${gitUserName}", "${gitRepoName}")
-                    }
+                    
+                    editNewImage("${githubToken}", "${imageName}", "${gitUserEmail}", "${gitUserName}", "${gitRepoName}")
+                
                 }
             }
         }
 
-        stage('Deploy on OpenShift Cluster') {
-            steps {
-                script { 
-                    withCredentials([file(credentialsId: "${openshiftCredentialsID}", variable: 'KUBECONFIG')]) {
-                        sh '''
-                            export KUBECONFIG=${KUBECONFIG}
-                            oc login ${clusterUrl}
-                            oc project ${nameSpace}
-                            oc apply -f deployment.yaml
-                            oc apply -f route.yaml
-                            oc apply -f service.yaml
-                            oc rollout status deployment/spring-boot-app
-                        '''
-                    }
+    stage('Deploy on OpenShift Cluster') {
+        steps {
+            script { 
+                dir('oc') {
+                            
+                    deployOnOc("${openshiftCredentialsID}", "${nameSpace}", "${clusterUrl}")
                 }
             }
         }
+    }
     }
 
     post {
