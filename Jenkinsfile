@@ -5,8 +5,8 @@ pipeline {
     environment {
     dockerHubCredentialsID	    = 'DockerHub'  		    			// DockerHub credentials ID.
     imageName   		        = 'mostafayounis0/spring-boot-app'     			        // DockerHub repo/image name.
-	openshiftCredentialsID	    = 'openshift'	    				// KubeConfig credentials ID.   
-	nameSpace                   = 'mostafayounis'
+	openshiftCredentialsID	    = 'openshift'	    				  
+	nameSpace                   = 'omarrouby'
 	clusterUrl                  = 'https://api.ocp-training.ivolve-test.com:6443'
 	gitRepoName 	            = 'Multi_Cloud_DevOps_project'
     gitUserName 	            = 'mostafayouni'
