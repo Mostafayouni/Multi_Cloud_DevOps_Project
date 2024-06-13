@@ -14,6 +14,7 @@ pipeline {
 	githubToken                 = 'GitHub'
 	sonarqubeUrl                = 'http://54.226.112.27:9000'
 	sonarTokenCredentialsID     = 'sonar-token'
+ 	k8sCredentialsID	        = 'kubernetes'
 	
     }
     
