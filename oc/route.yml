@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name:  spring-boot-app-route
+  name:  spring-boot-route
 spec:
   to:
     kind: Service
