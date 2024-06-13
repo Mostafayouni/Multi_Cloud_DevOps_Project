@@ -12,7 +12,6 @@ Comprehensive documentation for deploying a Java web app on OpenShift using Terr
 - [Manual Testing, Building, and Running Procedures](#manual-testing-building-and-running-procedures)
 - [Infrastructure Provisioning with Terraform](#infrastructure-provisioning-with-terraform)
 - [Ansible Playbook for Configuration](#ansible-playbook-for-configuration)
-- [infra.sh](#infrash)
 - [OpenShift Deployment](#openshift-deployment)
 - [Jenkins Pipeline](#jenkins-pipeline)
 - [Monitoring and Logging OpenShift Cluster](#monitoring-and-logging-openshift-cluster)
@@ -112,36 +111,33 @@ This document provides comprehensive instructions for deploying infrastructure u
 
 - **Purpose:** Provision a Virtual Private Cloud (VPC) with internet gateway for public access.
 - **Files:** `vpc/main.tf`, `vpc/variables.tf`, `vpc/outputs.tf`
+![vpc](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/ed4a38d4-323f-4d61-affe-c87fb7df0977)
 
 ### Subnet Module:
 
 - **Purpose:** Define public subnet, route table.
 - **Files:** `subnet/main.tf`, `subnet/variables.tf`, `subnet/outputs.tf`
+![subnet](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/6fef00e9-5941-4587-8736-c5b268ab284c)
 
 ### EC2 Module:
 
 - **Purpose:** Create an EC2 instance with necessary security group.
 - **Files:** `ec2/main.tf`, `ec2/variables.tf`, `ec2/outputs.tf`
+![ec2-instance](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/d7672b74-3d90-416d-9899-f089b3e6306d)
+### sequrity group:
+monitor traffic from and to the instance
+![security-group](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/bf00f36b-35ea-433c-943f-04aeadd9d301)
 
 ### CloudWatch Module:
 
 - **Purpose:** Set up CloudWatch resources for monitoring and SNS resources for sending emails for alarms.
 - **Files:** `cloudwatch/main.tf`, `cloudwatch/variables.tf`, `cloudwatch/outputs.tf`
+![Screenshot 2024-06-13 001541](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/ce6136fa-5116-4843-9188-e0f07c4b1f49)
 
 ### Usage
 
 1. Update values in `terraform.tfvars` file
-
-    ```hcl
-    region          = "us-east-1"
-    vpc_cidr        = "10.0.0.0/16"
-    subnet_cidr     = "10.0.0.0/24"
-    availability_zone = "us-east-1a"
-    public_key_path = "<path_to_file>"
-    ec2_ami_id      = "ami-0abcdef1234567890"
-    ec2_type        = "m5.large"
-    sns_email       = "<your_email@example.com>"
-    ```
+   ```
 
 2. Initialize and apply Terraform configurations:
 
@@ -149,6 +145,7 @@ This document provides comprehensive instructions for deploying infrastructure u
     terraform init
     terraform apply
     ```
+![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/9b7714e7-3ffd-4c57-95e7-8bc44ceb920a)
 
 3. Follow on-screen prompts to provision infrastructure.
 
@@ -157,6 +154,7 @@ This document provides comprehensive instructions for deploying infrastructure u
     ```sh
     terraform destroy
     ```
+![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/d072e2bb-f537-4d91-9bf8-81f2e7c08834)
 
 ## Ansible Playbook for Configuration
 
@@ -173,37 +171,18 @@ This document provides an overview of the Ansible playbook for installing and co
 
 ### Usage
 
-1. Update `ansible_host` & `ansible_ssh_private_key_file` in `inventory.ini`.
+1. Using dynamic inventory to get ip of ec2 instance
+        ```sh
+      python3 dynamic_inv.py
+    ```
 2. Update `Jenkins admin credentials` in `ansible/roles/jenkins/vars/main.yml`.
 3. Run Ansible playbook
 
     ```sh
-    ansible-playbook -i inventory.ini playbook.yml
+    ansible-playbook  playbook.yml
     ```
+![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/465bf33a-9618-48a1-bb72-38fb22b51c41)
 
-## infra.sh
-
-This Bash script is designed to streamline the setup of the project's infrastructure. It executes `Terraform` commands, updates the `ansible_host` in the `inventory.ini` file with EC2 public IP, and finally runs the Ansible playbook on the EC2 instance.
-
-### Usage
-
-1. Update Terraform and Ansible directories paths in `infra.sh`
-
-    ```sh
-    vim infra.sh
-    ```
-
-2. Make script executable
-
-    ```sh
-    chmod +x infra.sh
-    ```
-
-3. Run script
-
-    ```sh
-    ./infra.sh
-    ```
 
 ## OpenShift Deployment
 
@@ -213,10 +192,8 @@ This document demonstrates the deployment of a Java web application on OpenShift
 
 - **Deployment:** Define the deployment configuration for Java web-app. `openshift/deployment.yml`
 - **Service:** Expose the application within the OpenShift cluster. `openshift/service.yml`
-- **Network Policy:** Define network policies for secure communication. `openshift/networkpolicy.yml`
 - **Route:** Expose the application externally. `openshift/route.yml`
-- **Persistent Volume Claim (PVC):** Manage persistent storage for the application. `openshift/pvc.yml`
-
+  
 ### Usage
 
 1. Navigate to OpenShift directory
@@ -371,12 +348,4 @@ This document highlights the Logging Operator, a Golang-based tool tailored for 
     oc get elasticsearch -n ot-operators
     ```
 
-References:
 
-- [Logging Operator Overview](https://ot-logging-operator.netlify.app/docs/overview/)
-- [Getting Started with Logging Operator](https://ot-logging-operator.netlify.app/docs/getting-started/installation/)
-- [Elasticsearch Setup](https://ot-logging-operator.netlify.app/docs/getting-started/elasticsearch-setup/)
-- [Elasticsearch Configuration](https://ot-logging-operator.netlify.app/docs/configuration/elasticsearch-config/)
-
-By following these detailed steps, you will establish a comprehensive CI/CD pipeline integrating Jenkins, SonarQube, Docker, and OpenShift.
-```
