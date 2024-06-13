@@ -57,22 +57,23 @@ pipeline {
             }
         }
     }
-    stage('Edit new image in deployment.yaml file') {
+  stage('Edit new image in deployment.yaml file') {
             steps {
                 script { 
-                    
-                    editNewImage("${githubToken}", "${imageName}", "${gitUserEmail}", "${gitUserName}", "${gitRepoName}")
-                
+                    withCredentials([string(credentialsId: "${githubToken}", variable: 'GITHUB_TOKEN')]) {
+                        editNewImage("${GITHUB_TOKEN}", "${imageName}", "${gitUserEmail}", "${gitUserName}", "${gitRepoName}")
+                    }
                 }
             }
         }
 
-     stage('Deploy on OpenShift Cluster') {
+        stage('Deploy on OpenShift Cluster') {
             steps {
                 script { 
                     withCredentials([file(credentialsId: "${openshiftCredentialsID}", variable: 'KUBECONFIG')]) {
                         sh '''
-                            oc login --kubeconfig=${KUBECONFIG} ${clusterUrl}
+                            export KUBECONFIG=${KUBECONFIG}
+                            oc login ${clusterUrl}
                             oc project ${nameSpace}
                             oc apply -f deployment.yaml
                             oc apply -f route.yaml
