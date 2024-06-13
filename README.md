@@ -106,6 +106,10 @@ This document provides comprehensive instructions for deploying infrastructure u
 - **variables.tf:** Set variables that need to be defined in `terraform.tfvars` file.
 - **terraform.tfvars:** Define values for the needed variables.
 - **Remote Backend:** Store Terraform state remotely using S3 and DynamoDB.
+- ![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/028a4a29-6abd-443c-8d66-2e70dae1e319)
+
+![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/39479a91-a171-4424-8efd-5bab1d6eda3a)
+
 
 ### VPC Module:
 
@@ -184,35 +188,7 @@ This document provides an overview of the Ansible playbook for installing and co
 ![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/465bf33a-9618-48a1-bb72-38fb22b51c41)
 
 
-## OpenShift Deployment
 
-This document demonstrates the deployment of a Java web application on OpenShift. The orchestrated process includes setting up a deployment configuration for efficient scaling, establishing an internal service, implementing network policies for enhanced security, configuring routes for external access, and utilizing persistent volume claims to ensure data persistence and storage reliability.
-
-### OpenShift Manifests
-
-- **Deployment:** Define the deployment configuration for Java web-app. `openshift/deployment.yml`
-- **Service:** Expose the application within the OpenShift cluster. `openshift/service.yml`
-- **Route:** Expose the application externally. `openshift/route.yml`
-  
-### Usage
-
-1. Navigate to OpenShift directory
-
-    ```sh
-    cd OpenShift
-    ```
-
-2. Apply OpenShift deployment configurations
-
-    ```sh
-    oc apply -f .
-    ```
-
-3. Verify the deployment status
-
-    ```sh
-    oc get pods
-    ```
 
 ## Jenkins Pipeline
 
@@ -249,10 +225,8 @@ Create a SonarQube project and generate a secure user token.
 1. **Set Jenkins Credentials**
 
     Configure Jenkins credentials for GitHub, DockerHub, SonarQube Token, and OpenShift Token.
+![Screenshot 2024-06-13 013011](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/6922e404-e499-421f-be93-cf25fff587b8)
 
-    ```sh
-    oc cluster-info
-    ```
 
 2. **Make Shared Library Available Globally**
 
@@ -262,9 +236,10 @@ Create a SonarQube project and generate a secure user token.
 
     Configure SonarQube settings in Jenkins.
 
-4. **Open Jenkins and Create a New Pipeline Job**
+4. **Open Jenkins and Create a New Pipeline**
 
-    Set up a new pipeline job in Jenkins.
+    ![Screenshot 2024-06-13 014018](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/cb085313-e9ba-4934-87b6-10a8137fe4f6)
+
 
 5. **Update Variables in Jenkinsfile**
 
@@ -277,12 +252,33 @@ Create a SonarQube project and generate a secure user token.
 7. **Trigger the Pipeline**
 
     Initiate the execution of the pipeline in Jenkins.
+![jenkins output](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/d9640734-8f9a-4fe9-91c8-e7fcd2d753b3)
+![sonar](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/5f9098b3-c4e6-4d69-8092-d0dc2a23fc8f)
+
+## OpenShift Deployment
+
+This document demonstrates the deployment of a Java web application on OpenShift. The orchestrated process includes setting up a deployment configuration for efficient scaling, establishing an internal service, implementing network policies for enhanced security, configuring routes for external access, and utilizing persistent volume claims to ensure data persistence and storage reliability.
+
+### OpenShift Manifests
+
+- **Deployment:** Define the deployment configuration for Java web-app. `openshift/deployment.yml`
+- **Service:** Expose the application within the OpenShift cluster. `openshift/service.yml`
+- **Route:** Expose the application externally. `openshift/route.yml`
+  
+### Usage
+ ```sh
+    oc get all
+    ```
+![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/f56e3624-b1c1-46cc-b37e-155e1fdfcbf3)
+to vaerify that the app running
+
 
 ## Monitoring and Logging OpenShift Cluster
 
 This document highlights the Logging Operator, a Golang-based tool tailored for orchestrating EFK (Elasticsearch, Fluentd, and Kibana) clusters in Kubernetes and OpenShift. The operator efficiently manages individual components of the EFK stack, simplifying deployment and maintenance in containerized environments.
 
 ### Usage
+ 
 
 #### Setup using Helm tool
 
