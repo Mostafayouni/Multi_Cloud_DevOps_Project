@@ -1,4 +1,6 @@
 # Multi-Cloud DevOps Project
+![Architecture_Diagram](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/0d1c4513-ad73-44a3-a6d0-1ae72cd95008)
+
 
 ## OpenShift Deployment Automation with Jenkins
 
