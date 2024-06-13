@@ -1,5 +1,7 @@
 <h1>Mult-Cloud-Devops-Project</h1>
+
 ```markdown
+
 # OpenShift Deployment Automation with Jenkins
 
 Comprehensive documentation for deploying a Java web app on OpenShift using Terraform, Ansible, Jenkins, and more.
