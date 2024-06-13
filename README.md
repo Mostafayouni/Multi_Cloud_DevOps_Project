@@ -12,8 +12,9 @@ Comprehensive documentation for deploying a Java web app on OpenShift using Terr
 - [Manual Testing, Building, and Running Procedures](#manual-testing-building-and-running-procedures)
 - [Infrastructure Provisioning with Terraform](#infrastructure-provisioning-with-terraform)
 - [Ansible Playbook for Configuration](#ansible-playbook-for-configuration)
-- [OpenShift Deployment](#openshift-deployment)
 - [Jenkins Pipeline](#jenkins-pipeline)
+- [OpenShift Deployment](#openshift-deployment)
+
 - [Monitoring and Logging OpenShift Cluster](#monitoring-and-logging-openshift-cluster)
 
 ## Prerequisites
