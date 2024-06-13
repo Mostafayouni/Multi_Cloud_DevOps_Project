@@ -274,7 +274,7 @@ This document demonstrates the deployment of a Java web application on OpenShift
 to vaerify that the app running
 
 
- <h1> Monitoring and Logging OpenShift Cluster<h1>
+### Monitoring and Logging OpenShift Cluster
 
 This document highlights the Logging Operator, a Golang-based tool tailored for orchestrating EFK (Elasticsearch, Fluentd, and Kibana) clusters in Kubernetes and OpenShift. The operator efficiently manages individual components of the EFK stack, simplifying deployment and maintenance in containerized environments.
 
