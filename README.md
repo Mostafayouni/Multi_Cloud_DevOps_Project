@@ -189,52 +189,32 @@ Create a service account for Jenkins with the necessary permissions to access th
 ```sh
 oc create sa <serviceaccount_name> -n <project_name>
 oc create clusterrolebinding <rolebinding_name> --clusterrole=edit --serviceaccount=<project_name>:<serviceaccount_name>
-oc get secrets -n <project_name> -o jsonpath='{.items[?(@.metadata.annotations.kubernetes\.io/service-account\.name=="<serviceaccount_name>")].data.token}' | base64 -d
+oc serviceaccounts get-token <serviceaccount_name> -n <project_name>
 ```
 
 #### 3. SonarQube Project
 
 Create a SonarQube project and generate a secure user token.
+![Screenshot 2024-06-13 032440](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/c88b3667-570c-47c8-92a6-a0e37eda05a4)
 
 ### Usage
 
 1. **Set Jenkins Credentials**
     Configure Jenkins credentials for GitHub, DockerHub, SonarQube Token, and OpenShift Token.
-2. **Make Shared Library Available Globally**
+   ![Screenshot 2024-06-13 013011](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/0f177111-3cdb-49aa-b162-4cfdd1a963cd)
+
+3. **Make Shared Library Available Globally**
     Push the shared library file to a separate GitHub repository and configure it to be globally available in Jenkins.
-3. **Manage SonarQube Plugin**
+4. **Manage SonarQube Plugin**
     Configure SonarQube settings in Jenkins.
-4. **Open Jenkins and Create a New Pipeline**
-5. **Update Variables in Jenkinsfile
+5. **Open Jenkins and Create a New Pipeline**
+6. **Update Variables in Jenkinsfile
 Sure, here's the continuation and completion of the answer:
 
 ### Jenkins Pipeline
 
 This section provides detailed steps to set up and configure Jenkins for orchestrating an OpenShift deployment automation pipeline using a Jenkins shared library.
 
-#### Prerequisite
-
-1. **Jenkins Shared Library**
-
-   This repository includes reusable functions for the Jenkins pipeline:
-   - `checkoutRepo.groovy`: Checks out the GitHub source code.
-   - `runUnitTests.groovy`: Executes unit test commands.
-   - `runSonarQubeAnalysis.groovy`: Performs SonarQube analysis.
-   - `buildandPushDockerImage.groovy`: Builds Docker images and pushes them to DockerHub.
-   - `deployOnOpenShift.groovy`: Logs into the OpenShift cluster and deploys files.
-
-2. **OpenShift Service Account**
-
-   Create a service account for Jenkins with necessary permissions:
-   ```sh
-   oc create sa <serviceaccount_name> -n <project_name>
-   oc create clusterrolebinding <rolebinding_name> --clusterrole=edit --serviceaccount=<project_name>:<serviceaccount_name>
-   oc get secrets -n <project_name> -o jsonpath='{.items[?(@.metadata.annotations.kubernetes\.io/service-account\.name=="<serviceaccount_name>")].data.token}' | base64 -d
-   ```
-
-3. **SonarQube Project**
-
-   Create a SonarQube project and generate a secure user token.
 
 #### Usage
 
