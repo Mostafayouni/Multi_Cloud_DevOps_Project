@@ -67,16 +67,22 @@ pipeline {
             }
         }
 
-    stage('Deploy on OpenShift Cluster') {
-        steps {
-            script { 
-                dir('oc') {
-                            
-                    deployOnOc("${openshiftCredentialsID}", "${nameSpace}", "${clusterUrl}")
+     stage('Deploy on OpenShift Cluster') {
+            steps {
+                script { 
+                    withCredentials([file(credentialsId: "${openshiftCredentialsID}", variable: 'KUBECONFIG')]) {
+                        sh '''
+                            oc login --kubeconfig=${KUBECONFIG} ${clusterUrl}
+                            oc project ${nameSpace}
+                            oc apply -f deployment.yaml
+                            oc apply -f route.yaml
+                            oc apply -f service.yaml
+                            oc rollout status deployment/spring-boot-app
+                        '''
+                    }
                 }
             }
         }
-    }
     }
 
     post {
