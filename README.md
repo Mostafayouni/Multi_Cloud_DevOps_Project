@@ -266,7 +266,7 @@ This document demonstrates the deployment of a Java web application on OpenShift
 - **Service:** Expose the application within the OpenShift cluster. `openshift/service.yml`
 - **Route:** Expose the application externally. `openshift/route.yml`
   
-### Usage
+
  ```sh
     oc get all
     ```
@@ -274,11 +274,11 @@ This document demonstrates the deployment of a Java web application on OpenShift
 to vaerify that the app running
 
 
-## Monitoring and Logging OpenShift Cluster
+<h1> Monitoring and Logging OpenShift Cluster<h1>
 
 This document highlights the Logging Operator, a Golang-based tool tailored for orchestrating EFK (Elasticsearch, Fluentd, and Kibana) clusters in Kubernetes and OpenShift. The operator efficiently manages individual components of the EFK stack, simplifying deployment and maintenance in containerized environments.
 
-### Usage
+Usage
  
 
 #### Setup using Helm tool
