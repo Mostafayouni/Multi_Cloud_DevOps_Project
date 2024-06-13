@@ -5,7 +5,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: spring-boot-app
+    name: spring-boot-app-service
   port:
     targetPort: 8081
   tls:
