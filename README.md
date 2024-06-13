@@ -1,11 +1,8 @@
+<h1>Mult-Cloud-Devops-Project</h1>
 ```markdown
 # OpenShift Deployment Automation with Jenkins
 
 Comprehensive documentation for deploying a Java web app on OpenShift using Terraform, Ansible, Jenkins, and more.
-
-## Overview
-
-This project automates the deployment of a Java web application on an OpenShift cluster. The process involves infrastructure provisioning with Terraform, configuration with Ansible, and continuous integration/continuous delivery with Jenkins.
 
 **Tools:** Bash scripting, Git, SonarQube, Docker, Terraform, AWS, Ansible, Jenkins, and OpenShift.
 
@@ -37,6 +34,7 @@ This document provides a comprehensive guide outlining the manual steps before a
 ```sh
 ./gradlew test
 ```
+![1](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/e1908ef1-a5a7-4228-a2fa-4152bdaaef61)
 
 Access Test Results:
 
@@ -45,6 +43,7 @@ Navigate to the following path and open the `index.html` file:
 ```sh
 cd build/reports/tests/test/
 ```
+![2](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/8fb82928-67da-4922-bdca-abf93edfdcee)
 
 ### 2. Perform SonarQube Analysis
 
@@ -57,8 +56,8 @@ Ensure SonarQube project is configured with the necessary project key and login 
 -Dsonar.projectKey=<project_key> \
 -Dsonar.host.url=<host_server_url> \
 -Dsonar.login=<login_token> \
--Dsonar.scm.provider=git
 ```
+![4-sonar](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/ad77cfa2-58ea-4035-8c20-5b97dd965c36)
 
 ### 3. Build and Run Application
 
@@ -67,16 +66,20 @@ Build Application:
 ```sh
 ./gradlew build --stacktrace
 ```
+![5build](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/4d6fd6e6-f3db-450f-ba4f-c3ef880b18f0)
 
 Run Application:
 
 ```sh
 java -jar demo.jar
 ```
+![44](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/f4256106-e0b5-440a-a2d5-686e14d5631d)
 
 Access Application Locally:
 
 Visit `http://localhost:8081`
+
+![6-test build jar](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/16975e1d-fbd5-43d4-9241-521aee03db58)
 
 ### 4. Build Docker Image and Run Container
 
@@ -85,12 +88,14 @@ Build Docker Image:
 ```sh
 docker build -t <image_name> .
 ```
+![7-docker build -exec -test image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/e571948d-98fc-4f9e-8fec-a2bad148b1d4)
 
 Run Docker Container:
 
 ```sh
 docker run --name=<container_name> -d -p 8081:8081 <image_name>
 ```
+![7-docker image name ](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/54b66cbd-213a-44bf-a41c-d286f97dd1f3)
 
 ## Infrastructure Provisioning with Terraform
 
@@ -228,6 +233,10 @@ This document demonstrates the deployment of a Java web application on OpenShift
 
 3. Verify the deployment status
 
+    ```sh
+    oc get pods
+    ```
+
 ## Jenkins Pipeline
 
 This documentation provides detailed steps to set up and configure Jenkins for orchestrating an OpenShift deployment automation pipeline using Jenkins shared library. The setup includes configuring Jenkins credentials, making the Shared Library available globally, managing SonarQube integration, and creating a new pipeline job.
@@ -280,11 +289,11 @@ Create a SonarQube project and generate a secure user token.
 
     Set up a new pipeline job in Jenkins.
 
-5
+5. **Update Variables in Jenkinsfile**
 
-. **Update Variables in Jenkinsfile**
+    Customize the
 
-    Customize the Jenkinsfile by updating variables to match the specifics of your project and environment.
+ Jenkinsfile by updating variables to match the specifics of your project and environment.
 
 6. **Configure the Pipeline with the Jenkinsfile in Your Repository**
 
