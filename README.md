@@ -282,7 +282,7 @@ To verify that the application is running:
 oc get all
 ```
 ![OpenShift Deployment](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/f56e3624-b1c1-46cc-b37e-155e1fdfcbf3)
-![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/248b0077-7acd-4558-b1a9-ec710234c6e6)
+![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/21d3a461-f534-4956-a6aa-0adc097faabe)
 
 testing the app 
 
