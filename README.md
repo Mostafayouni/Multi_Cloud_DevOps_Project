@@ -44,6 +44,8 @@ Run the following command to execute unit tests:
 ```sh
 ./gradlew test
 ```
+![image](https://github.com/Mostafayouni/Multi_Cloud_DevOps_project/assets/105316729/11c4d569-ae72-492c-857c-a8f2b0d2cf04)
+
 To access test results, navigate to the following path and open the `index.html` file:
 ```sh
 cd build/reports/tests/test/
